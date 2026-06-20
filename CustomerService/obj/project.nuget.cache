@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "7HSq9vtgmdk=",
+  "success": true,
+  "projectFilePath": "D:\\New Volume2\\SmartBank\\CustomerService\\CustomerService.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\M S P\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.9\\microsoft.aspnetcore.openapi.10.0.9.nupkg.sha512",
+    "C:\\Users\\M S P\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
