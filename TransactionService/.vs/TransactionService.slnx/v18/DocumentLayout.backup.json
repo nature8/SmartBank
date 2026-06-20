@@ -1,0 +1,85 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\dshiv\\source\\repos\\SmartBank\\TransactionService\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4956346B-31EC-4753-E3FA-C7485B6176B3}|TransactionService\\TransactionService.csproj|c:\\users\\dshiv\\source\\repos\\smartbank\\transactionservice\\transactionservice\\dtos\\transferdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4956346B-31EC-4753-E3FA-C7485B6176B3}|TransactionService\\TransactionService.csproj|solutionrelative:transactionservice\\dtos\\transferdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4956346B-31EC-4753-E3FA-C7485B6176B3}|TransactionService\\TransactionService.csproj|c:\\users\\dshiv\\source\\repos\\smartbank\\transactionservice\\transactionservice\\dtos\\withdrawdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4956346B-31EC-4753-E3FA-C7485B6176B3}|TransactionService\\TransactionService.csproj|solutionrelative:transactionservice\\dtos\\withdrawdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4956346B-31EC-4753-E3FA-C7485B6176B3}|TransactionService\\TransactionService.csproj|c:\\users\\dshiv\\source\\repos\\smartbank\\transactionservice\\transactionservice\\dtos\\depositdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4956346B-31EC-4753-E3FA-C7485B6176B3}|TransactionService\\TransactionService.csproj|solutionrelative:transactionservice\\dtos\\depositdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4956346B-31EC-4753-E3FA-C7485B6176B3}|TransactionService\\TransactionService.csproj|c:\\users\\dshiv\\source\\repos\\smartbank\\transactionservice\\transactionservice\\models\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4956346B-31EC-4753-E3FA-C7485B6176B3}|TransactionService\\TransactionService.csproj|solutionrelative:transactionservice\\models\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TransferDto.cs",
+              "DocumentMoniker": "C:\\Users\\dshiv\\source\\repos\\SmartBank\\TransactionService\\TransactionService\\DTOs\\TransferDto.cs",
+              "RelativeDocumentMoniker": "TransactionService\\DTOs\\TransferDto.cs",
+              "ToolTip": "C:\\Users\\dshiv\\source\\repos\\SmartBank\\TransactionService\\TransactionService\\DTOs\\TransferDto.cs",
+              "RelativeToolTip": "TransactionService\\DTOs\\TransferDto.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAgwAQAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-20T13:02:43.122Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WithdrawDto.cs",
+              "DocumentMoniker": "C:\\Users\\dshiv\\source\\repos\\SmartBank\\TransactionService\\TransactionService\\DTOs\\WithdrawDto.cs",
+              "RelativeDocumentMoniker": "TransactionService\\DTOs\\WithdrawDto.cs",
+              "ToolTip": "C:\\Users\\dshiv\\source\\repos\\SmartBank\\TransactionService\\TransactionService\\DTOs\\WithdrawDto.cs",
+              "RelativeToolTip": "TransactionService\\DTOs\\WithdrawDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-20T13:02:12.371Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DepositDto.cs",
+              "DocumentMoniker": "C:\\Users\\dshiv\\source\\repos\\SmartBank\\TransactionService\\TransactionService\\DTOs\\DepositDto.cs",
+              "RelativeDocumentMoniker": "TransactionService\\DTOs\\DepositDto.cs",
+              "ToolTip": "C:\\Users\\dshiv\\source\\repos\\SmartBank\\TransactionService\\TransactionService\\DTOs\\DepositDto.cs",
+              "RelativeToolTip": "TransactionService\\DTOs\\DepositDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-20T13:01:54.459Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Transaction.cs",
+              "DocumentMoniker": "C:\\Users\\dshiv\\source\\repos\\SmartBank\\TransactionService\\TransactionService\\Models\\Transaction.cs",
+              "RelativeDocumentMoniker": "TransactionService\\Models\\Transaction.cs",
+              "ToolTip": "C:\\Users\\dshiv\\source\\repos\\SmartBank\\TransactionService\\TransactionService\\Models\\Transaction.cs",
+              "RelativeToolTip": "TransactionService\\Models\\Transaction.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-20T13:01:18.202Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
