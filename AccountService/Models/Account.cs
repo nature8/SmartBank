@@ -9,7 +9,7 @@ namespace AccountService.Models
         public string AccountType { get; set; } = string.Empty;
         public decimal Balance { get; set; }
         public bool IsActive { get; set; } = true;
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? ClosedAt { get; set; } = null;
     }
 }

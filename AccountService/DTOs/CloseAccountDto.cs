@@ -1,4 +1,4 @@
-namespace AccountServices.DTOs
+namespace AccountService.DTOs
 {
     public class CloseAccountDto
     {
