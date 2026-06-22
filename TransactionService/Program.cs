@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 // DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(
-        "Server=.;Database=TransactionDB;Trusted_Connection=True;TrustServerCertificate=True;"));
+       "Server=.\\SQLEXPRESS;Database=TransactionDB;Trusted_Connection=True;TrustServerCertificate=True;"));
 
 // DI
 builder.Services.AddScoped<TransactionAppService>();
