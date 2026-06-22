@@ -3,6 +3,7 @@
   <Project Path="AuthService/AuthService.csproj" />
   <Project Path="CustomerService/CustomerService.csproj" />
   <Project Path="Gateway/Gateway.csproj" />
+  <Project Path="NotificationService/NotificationService.csproj" />
   <Project Path="TestingService/TestingService.csproj" />
   <Project Path="TransactionService/TransactionService.csproj" Id="26f48098-70c5-41bb-8cfe-9705324c46b7" />
 </Solution>
