@@ -1,5 +1,11 @@
-.vs/ 
-**/bin/ 
-**/obj/ 
-*.user 
-*.suo 
+# Visual Studio
+.vs/
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+
+# Logs
+*.log
