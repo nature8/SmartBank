@@ -83,23 +83,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\M S P\\.nuget\\packages\\": {},
+    "C:\\Users\\dshiv\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\New Volume2\\SmartBank\\AccountService\\AccountService.csproj",
+      "projectUniqueName": "C:\\Users\\dshiv\\OneDrive\\Desktop\\SmartBank\\AccountService\\AccountService.csproj",
       "projectName": "AccountService",
-      "projectPath": "D:\\New Volume2\\SmartBank\\AccountService\\AccountService.csproj",
-      "packagesPath": "C:\\Users\\M S P\\.nuget\\packages\\",
-      "outputPath": "D:\\New Volume2\\SmartBank\\AccountService\\obj\\",
+      "projectPath": "C:\\Users\\dshiv\\OneDrive\\Desktop\\SmartBank\\AccountService\\AccountService.csproj",
+      "packagesPath": "C:\\Users\\dshiv\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dshiv\\OneDrive\\Desktop\\SmartBank\\AccountService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\M S P\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\dshiv\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

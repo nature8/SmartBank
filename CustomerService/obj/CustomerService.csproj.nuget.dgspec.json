@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\New Volume2\\SmartBank\\CustomerService\\CustomerService.csproj": {}
+    "C:\\Users\\dshiv\\OneDrive\\Desktop\\SmartBank\\CustomerService\\CustomerService.csproj": {}
   },
   "projects": {
-    "D:\\New Volume2\\SmartBank\\CustomerService\\CustomerService.csproj": {
+    "C:\\Users\\dshiv\\OneDrive\\Desktop\\SmartBank\\CustomerService\\CustomerService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\New Volume2\\SmartBank\\CustomerService\\CustomerService.csproj",
+        "projectUniqueName": "C:\\Users\\dshiv\\OneDrive\\Desktop\\SmartBank\\CustomerService\\CustomerService.csproj",
         "projectName": "CustomerService",
-        "projectPath": "D:\\New Volume2\\SmartBank\\CustomerService\\CustomerService.csproj",
-        "packagesPath": "C:\\Users\\M S P\\.nuget\\packages\\",
-        "outputPath": "D:\\New Volume2\\SmartBank\\CustomerService\\obj\\",
+        "projectPath": "C:\\Users\\dshiv\\OneDrive\\Desktop\\SmartBank\\CustomerService\\CustomerService.csproj",
+        "packagesPath": "C:\\Users\\dshiv\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dshiv\\OneDrive\\Desktop\\SmartBank\\CustomerService\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\M S P\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dshiv\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
