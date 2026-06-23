@@ -1,11 +1,11 @@
 using CustomerService.Data;
 using Microsoft.EntityFrameworkCore;
-
+using CustomerService.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services
 builder.Services.AddControllers();
-
+builder.Services.AddHostedService<CustomerConsumer>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

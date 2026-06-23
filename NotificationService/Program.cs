@@ -12,6 +12,7 @@ builder.Services.AddDbContext<NotificationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<NotificationAppService>();
+builder.Services.AddHostedService<NotificationConsumer>();
 
 var app = builder.Build();
 

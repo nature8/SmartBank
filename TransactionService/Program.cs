@@ -10,7 +10,9 @@ builder.Services.AddControllers();
 // DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(
-       "SET_IN_LOCAL_MACHINE"));
+            
+"Server=SET_IN_LOCAL_MACHINE"
+  ));
 
 // DI
 builder.Services.AddScoped<TransactionAppService>();
@@ -18,7 +20,7 @@ builder.Services.AddScoped<TransactionAppService>();
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddSingleton<NotificationPublisher>();
 var app = builder.Build();
 
 // Swagger UI

@@ -51,6 +51,7 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddScoped<SmartBank.Authentication.Services.IJwtService, SmartBank.Authentication.Services.JwtService>();
 
 builder.Services.AddScoped<JwtTokenGenerator>();
+builder.Services.AddSingleton<CustomerPublisher>();
 
 // builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 //     .AddJwtBearer(options =>
@@ -122,4 +123,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-

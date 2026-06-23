@@ -8,10 +8,12 @@ namespace SmartBank.TransactionService.Services
     public class TransactionAppService
     {
         private readonly AppDbContext _context;
+        private readonly NotificationPublisher _notificationPublisher;
 
-        public TransactionAppService(AppDbContext context)
+        public TransactionAppService(AppDbContext context, NotificationPublisher notificationPublisher)
         {
             _context = context;
+            _notificationPublisher = notificationPublisher;
         }
 
         public async Task Deposit(DepositDto dto)
@@ -25,6 +27,12 @@ namespace SmartBank.TransactionService.Services
             });
 
             await _context.SaveChangesAsync();
+
+            await _notificationPublisher.PublishNotificationAsync(
+                dto.AccountId,
+                $"Deposit of {dto.Amount} successful",
+                "Deposit"
+            );
         }
 
         public async Task Withdraw(WithdrawDto dto)
@@ -38,6 +46,12 @@ namespace SmartBank.TransactionService.Services
             });
 
             await _context.SaveChangesAsync();
+
+            await _notificationPublisher.PublishNotificationAsync(
+                dto.AccountId,
+                $"Withdrawal of {dto.Amount} successful",
+                "Withdraw"
+            );
         }
 
         public async Task Transfer(TransferDto dto)
@@ -52,9 +66,15 @@ namespace SmartBank.TransactionService.Services
             });
 
             await _context.SaveChangesAsync();
+
+            await _notificationPublisher.PublishNotificationAsync(
+                dto.FromAccountId,
+                $"Transfer of {dto.Amount} to account {dto.ToAccountId} successful",
+                "Transfer"
+            );
         }
 
-        public async Task<List<Transaction>> GetStatement(int accountId)
+      public async Task<List<Transaction>> GetStatement(int accountId)
         {
             return await _context.Transactions
                 .Where(t => t.AccountId == accountId || t.DestinationAccountId == accountId)

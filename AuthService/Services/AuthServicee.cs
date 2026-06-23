@@ -10,16 +10,19 @@ namespace SmartBank.Authentication.Services
         private readonly IUserRepository _userRepository;
         private readonly IJwtService _jwtService;
         private readonly JwtTokenGenerator _jwtTokenGenerator;
+        private readonly CustomerPublisher _customerPublisher;
 
 
         public AuthServicee(
             IUserRepository userRepository,
             IJwtService jwtService,
-            JwtTokenGenerator jwtTokenGenerator)
+            JwtTokenGenerator jwtTokenGenerator,
+            CustomerPublisher customerPublisher)
         {
             _userRepository = userRepository;
             _jwtTokenGenerator = jwtTokenGenerator;
             _jwtService = jwtService;
+            _customerPublisher = customerPublisher;
         }
 
         public async Task<string> RegisterAsync(RegisterRequestDto request)
@@ -49,6 +52,13 @@ namespace SmartBank.Authentication.Services
             };
 
             await _userRepository.AddUserAsync(user);
+
+            await _customerPublisher.PublishNewUserAsync(
+                user.UserId,
+                user.FullName,
+                user.Email,
+                user.PhoneNumber
+            );
 
             return "User registered successfully.";
         }
