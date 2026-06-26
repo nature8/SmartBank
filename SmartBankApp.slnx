@@ -1,6 +1,7 @@
 <Solution>
   <Project Path="AccountService/AccountService.csproj" />
   <Project Path="AuthService/AuthService.csproj" />
+  <Project Path="CustomerService.Tests/CustomerService.Tests.csproj" />
   <Project Path="CustomerService/CustomerService.csproj" />
   <Project Path="Gateway/Gateway.csproj" />
   <Project Path="TestingService/TestingService.csproj" />
