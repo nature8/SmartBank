@@ -7,10 +7,17 @@ namespace AccountService.Services
     public class AccountService : IAccountService
     {
         private readonly IAccountRepository _accountRepository;
+        private readonly AccountTransactionPublisher _transactionPublisher;
+        private readonly AccountPublisher _accountPublisher;
 
-        public AccountService(IAccountRepository accountRepository)
+        public AccountService(
+            IAccountRepository accountRepository,
+            AccountTransactionPublisher transactionPublisher,
+            AccountPublisher accountPublisher)
         {
             _accountRepository = accountRepository;
+            _transactionPublisher = transactionPublisher;
+            _accountPublisher = accountPublisher;
         }
 
         public async Task<AccountResponseDto?> CreateAccountAsync(CreateAccountDto createAccountDto)
@@ -20,13 +27,13 @@ namespace AccountService.Services
                 CustomerId = createAccountDto.CustomerId,
                 AccountType = createAccountDto.AccountType,
                 Balance = createAccountDto.InitialDeposit,
-                // Generate a unique account number
                 AccountNumber = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 12).ToUpper()
-            }; 
+            };
 
             var createdAccount = await _accountRepository.CreateAsync(account);
 
-            
+            await _transactionPublisher.PublishAccountEventAsync(account.AccountId, "AccountOpened");
+            await _accountPublisher.PublishAccountOpenedAsync(account.CustomerId, account.AccountId, account.AccountNumber);
 
             return new AccountResponseDto
             {
@@ -68,10 +75,14 @@ namespace AccountService.Services
 
         public async Task<bool> CloseAccountAsync(int id)
         {
-            return await _accountRepository.CloseAccountAsync(id);
+            var result = await _accountRepository.CloseAccountAsync(id);
+
+            if (result)
+            {
+                await _transactionPublisher.PublishAccountEventAsync(id, "AccountClosed");
+            }
+
+            return result;
         }
-
-
     }
-
 }

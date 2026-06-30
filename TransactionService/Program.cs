@@ -11,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(
             
-"Server=SET_IN_LOCAL_MACHINE"
+"Server=.\\SQLEXPRESS;Database=TransactionDB;Trusted_Connection=True;TrustServerCertificate=True;"
   ));
 
 // DI
@@ -21,6 +21,7 @@ builder.Services.AddScoped<TransactionAppService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<NotificationPublisher>();
+builder.Services.AddHostedService<AccountEventConsumer>();
 var app = builder.Build();
 
 // Swagger UI

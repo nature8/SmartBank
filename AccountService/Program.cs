@@ -15,6 +15,8 @@ builder.Services.AddDbContext<AccountDbContext>(options =>
 
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 builder.Services.AddScoped<IAccountService, AccountService.Services.AccountService>();
+builder.Services.AddSingleton<AccountPublisher>();
+builder.Services.AddSingleton<AccountTransactionPublisher>();
 
 var app = builder.Build();
 
