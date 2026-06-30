@@ -73,6 +73,30 @@ namespace AccountService.Services
             }).ToList();
         }
 
+        public async Task<bool> DepositAsync(int id, decimal amount)
+        {
+            var result = await _accountRepository.DepositAsync(id, amount);
+
+            if (result)
+            {
+                await _transactionPublisher.PublishAccountEventAsync(id, "Deposit");
+            }
+
+            return result;
+        }
+
+        public async Task<bool> WithdrawAsync(int id, decimal amount)
+        {
+            var result = await _accountRepository.WithdrawAsync(id, amount);
+
+            if (result)
+            {
+                await _transactionPublisher.PublishAccountEventAsync(id, "Withdrawal");
+            }
+
+            return result;
+        }
+
         public async Task<bool> CloseAccountAsync(int id)
         {
             var result = await _accountRepository.CloseAccountAsync(id);

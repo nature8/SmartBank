@@ -38,6 +38,23 @@ namespace AccountService.Controllers
             return Ok(result);
         }
 
+        [HttpPut("{id}/deposit")]
+        public async Task<IActionResult> Deposit(int id, decimal amount)
+        {
+            var success = await _accountService.DepositAsync(id, amount);
+            if (!success) return BadRequest("Failed to deposit funds.");
+            return Ok("Funds deposited successfully.");
+        }
+        
+
+        [HttpPut("{id}/withdraw")]
+        public async Task<IActionResult> Withdraw(int id, decimal amount)
+        {
+            var success = await _accountService.WithdrawAsync(id, amount);
+            if (!success) return BadRequest("Failed to withdraw funds.");
+            return Ok("Funds withdrawn successfully.");
+        }
+
         [HttpPost("close")]
         public async Task<IActionResult> Close([FromBody] CloseAccountDto closeAccountDto)
         {
