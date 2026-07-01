@@ -6,7 +6,7 @@ namespace AccountService.Services
 {
     public class AccountTransactionPublisher
     {
-        public async Task PublishAccountEventAsync(int accountId, string eventType)
+        public async Task PublishAccountEventAsync(int accountId, string eventType, decimal amount,decimal balance)
         {
             var factory = new ConnectionFactory { HostName = "localhost" };
 
@@ -24,7 +24,11 @@ namespace AccountService.Services
             var payload = new
             {
                 AccountId = accountId,
-                EventType = eventType // "AccountOpened" or "AccountClosed"
+                EventType = eventType ,
+                Amount = amount,
+                Balance = balance,
+                OccurredAt = DateTime.UtcNow,
+                // "AccountOpened" or "AccountClosed"
             };
 
             string json = JsonSerializer.Serialize(payload);

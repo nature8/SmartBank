@@ -31,33 +31,12 @@ namespace AccountService.Repositories
             return await _context.Accounts.Where(a => a.CustomerId == customerId).ToListAsync();
         }
 
-        public async Task<bool> DepositAsync(int id, decimal amount)
+        
+        public async Task UpdateAsync(Account account)
         {
-            var account = await _context.Accounts.FindAsync(id);
-            if (account == null || !account.IsActive)
-            {
-                return false;
-            }
-
-            account.Balance += amount;
+            _context.Accounts.Update(account);
             await _context.SaveChangesAsync();
-            return true;
         }
-
-        public async Task<bool> WithdrawAsync(int id, decimal amount)
-        {
-            var account = await _context.Accounts.FindAsync(id);
-            if (account == null || !account.IsActive || account.Balance < amount)
-            {
-                return false;
-            }
-            
-
-            account.Balance -= amount;
-            await _context.SaveChangesAsync();
-            return true;
-        }
-
         public async Task<bool> CloseAccountAsync(int id)
         {
             var account = await _context.Accounts.FindAsync(id);

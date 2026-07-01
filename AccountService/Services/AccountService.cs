@@ -32,7 +32,7 @@ namespace AccountService.Services
 
             var createdAccount = await _accountRepository.CreateAsync(account);
 
-            await _transactionPublisher.PublishAccountEventAsync(account.AccountId, "AccountOpened");
+            await _transactionPublisher.PublishAccountEventAsync(account.AccountId, "AccountOpened", 0, account.Balance);
             await _accountPublisher.PublishAccountOpenedAsync(account.CustomerId, account.AccountId, account.AccountNumber);
 
             return new AccountResponseDto
@@ -73,29 +73,7 @@ namespace AccountService.Services
             }).ToList();
         }
 
-        public async Task<bool> DepositAsync(int id, decimal amount)
-        {
-            var result = await _accountRepository.DepositAsync(id, amount);
-
-            if (result)
-            {
-                await _transactionPublisher.PublishAccountEventAsync(id, "Deposit");
-            }
-
-            return result;
-        }
-
-        public async Task<bool> WithdrawAsync(int id, decimal amount)
-        {
-            var result = await _accountRepository.WithdrawAsync(id, amount);
-
-            if (result)
-            {
-                await _transactionPublisher.PublishAccountEventAsync(id, "Withdrawal");
-            }
-
-            return result;
-        }
+        
 
         public async Task<bool> CloseAccountAsync(int id)
         {
@@ -103,9 +81,13 @@ namespace AccountService.Services
 
             if (result)
             {
-                await _transactionPublisher.PublishAccountEventAsync(id, "AccountClosed");
+                var account = await _accountRepository.GetByIdAsync(id);
+                if (account == null)
+                {
+                    return false;
+                }
+                await _transactionPublisher.PublishAccountEventAsync(id, "AccountClosed", 0, account.Balance);
             }
-
             return result;
         }
     }
