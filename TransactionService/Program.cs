@@ -16,11 +16,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // DI
 builder.Services.AddScoped<TransactionAppService>();
+builder.Services.AddSingleton<NotificationPublisher>();
+builder.Services.AddScoped<AccountPublisher>();
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<NotificationPublisher>();
 builder.Services.AddHostedService<AccountEventConsumer>();
 var app = builder.Build();
 

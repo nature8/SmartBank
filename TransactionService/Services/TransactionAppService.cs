@@ -9,11 +9,15 @@ namespace SmartBank.TransactionService.Services
     {
         private readonly AppDbContext _context;
         private readonly NotificationPublisher _notificationPublisher;
+        private readonly AccountPublisher _accountPublisher;
 
-        public TransactionAppService(AppDbContext context, NotificationPublisher notificationPublisher)
+        public TransactionAppService(AppDbContext context, 
+            NotificationPublisher notificationPublisher,
+            AccountPublisher accountPublisher)
         {
             _context = context;
             _notificationPublisher = notificationPublisher;
+            _accountPublisher = accountPublisher;
         }
 
         public async Task Deposit(DepositDto dto)
@@ -28,6 +32,16 @@ namespace SmartBank.TransactionService.Services
 
             await _context.SaveChangesAsync();
 
+            // Publish event to Account Service
+            await _accountPublisher.PublishAccountTransactionAsync(
+                new AccountTransactionEvent
+                {
+                    AccountId = dto.AccountId,
+                    Amount = dto.Amount,
+                    TransactionType = "Deposit"
+                });
+
+            // Publish Notification
             await _notificationPublisher.PublishNotificationAsync(
                 dto.AccountId,
                 $"Deposit of {dto.Amount} successful",
@@ -47,6 +61,16 @@ namespace SmartBank.TransactionService.Services
 
             await _context.SaveChangesAsync();
 
+            // Publish event to Account Service
+            await _accountPublisher.PublishAccountTransactionAsync(
+                new AccountTransactionEvent
+                {
+                    AccountId = dto.AccountId,
+                    Amount = dto.Amount,
+                    TransactionType = "Withdraw"
+                });
+
+            // Publish Notification
             await _notificationPublisher.PublishNotificationAsync(
                 dto.AccountId,
                 $"Withdrawal of {dto.Amount} successful",
