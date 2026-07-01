@@ -58,7 +58,7 @@ namespace AccountService.Services
                 {
                     account.Balance += transaction.Amount;
                 }
-                else if (transaction.TransactionType == "Withdrawal")
+                else if (transaction.TransactionType == "Withdraw")
                 {
                     account.Balance -= transaction.Amount;
                 }   
