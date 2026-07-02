@@ -1,0 +1,58 @@
+@page
+@model SmartBank.Web.Pages.Notifications.MyNotificationsModel
+@{
+    ViewData["Title"] = "My notifications";
+}
+
+<h3 class="mb-3"><i class="bi bi-bell me-2"></i>My notifications</h3>
+
+@if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+{
+    <div class="alert alert-danger"><i class="bi bi-exclamation-triangle me-1"></i>@Model.ErrorMessage</div>
+}
+else if (!Model.HasCustomerRecord)
+{
+    <div class="alert alert-info">
+        <i class="bi bi-info-circle me-1"></i>
+        No customer profile is linked to your login yet. Please contact a branch representative.
+    </div>
+}
+else
+{
+    <div class="card">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr><th>Date</th><th>Type</th><th>Message</th><th>Read</th></tr>
+                </thead>
+                <tbody>
+                    @if (Model.Notifications.Count == 0)
+                    {
+                        <tr><td colspan="4" class="text-center text-muted py-4">You have no notifications yet.</td></tr>
+                    }
+                    else
+                    {
+                        @foreach (var n in Model.Notifications)
+                        {
+                            <tr class="@(n.IsRead ? "" : "fw-semibold")">
+                                <td>@n.CreatedAt.ToLocalTime().ToString("g")</td>
+                                <td><span class="badge text-bg-info">@n.Type</span></td>
+                                <td>@n.Message</td>
+                                <td>
+                                    @if (n.IsRead)
+                                    {
+                                        <span class="badge text-bg-secondary">Read</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge text-bg-primary">New</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

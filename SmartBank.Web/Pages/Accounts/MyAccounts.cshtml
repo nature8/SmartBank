@@ -1,0 +1,67 @@
+@page
+@model SmartBank.Web.Pages.Accounts.MyAccountsModel
+@{
+    ViewData["Title"] = "My accounts";
+}
+
+<h3 class="mb-3"><i class="bi bi-wallet2 me-2"></i>My accounts</h3>
+
+@if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+{
+    <div class="alert alert-danger"><i class="bi bi-exclamation-triangle me-1"></i>@Model.ErrorMessage</div>
+}
+else if (!Model.HasCustomerRecord)
+{
+    <div class="alert alert-info">
+        <i class="bi bi-info-circle me-1"></i>
+        No customer profile is linked to your login yet. Please contact a branch representative.
+    </div>
+}
+else
+{
+    <div class="card">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Account ID</th>
+                        <th>Account number</th>
+                        <th>Balance</th>
+                        <th>Status</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Accounts.Count == 0)
+                    {
+                        <tr><td colspan="5" class="text-center text-muted py-4">You don't have any accounts yet.</td></tr>
+                    }
+                    else
+                    {
+                        @foreach (var acc in Model.Accounts)
+                        {
+                            <tr>
+                                <td>@acc.AccountId</td>
+                                <td>@acc.AccountNumber</td>
+                                <td class="balance-amount">@acc.Balance.ToString("C")</td>
+                                <td>
+                                    @if (acc.IsActive)
+                                    {
+                                        <span class="badge text-bg-success">Active</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge text-bg-secondary">Closed</span>
+                                    }
+                                </td>
+                                <td class="text-end">
+                                    <a asp-page="/Transactions/Statement" asp-route-accountId="@acc.AccountId" class="btn btn-sm btn-outline-secondary">Statement</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

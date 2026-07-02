@@ -1,0 +1,70 @@
+:root {
+    --sb-navy: #0b2e4f;
+    --sb-navy-dark: #071f38;
+    --sb-gold: #c9a53b;
+}
+
+body {
+    background-color: #f4f6f9;
+}
+
+.sb-navbar {
+    background-color: var(--sb-navy) !important;
+}
+.sb-navbar .navbar-brand {
+    letter-spacing: .5px;
+}
+
+.card {
+    border: none;
+    border-radius: .75rem;
+    box-shadow: 0 .125rem .5rem rgba(15, 30, 60, .08);
+}
+
+.card-header {
+    border-radius: .75rem .75rem 0 0 !important;
+    background-color: var(--sb-navy);
+    color: #fff;
+    font-weight: 600;
+}
+
+.btn-primary {
+    background-color: var(--sb-navy);
+    border-color: var(--sb-navy);
+}
+.btn-primary:hover, .btn-primary:focus {
+    background-color: var(--sb-navy-dark);
+    border-color: var(--sb-navy-dark);
+}
+
+.btn-gold {
+    background-color: var(--sb-gold);
+    border-color: var(--sb-gold);
+    color: #1a1a1a;
+}
+.btn-gold:hover {
+    background-color: #b1902f;
+    color: #fff;
+}
+
+.stat-card {
+    border-left: 4px solid var(--sb-navy);
+}
+
+.role-badge-Admin { background-color: #6f42c1 !important; }
+.role-badge-Manager { background-color: #0d6efd !important; }
+.role-badge-Customer { background-color: #198754 !important; }
+
+.table thead {
+    background-color: #eef1f6;
+}
+
+.balance-amount {
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+}
+
+.auth-wrapper {
+    max-width: 480px;
+    margin: 2rem auto;
+}

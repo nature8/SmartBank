@@ -1,0 +1,42 @@
+@page
+@model SmartBank.Web.Pages.Notifications.CreateModel
+@{
+    ViewData["Title"] = "Send notification";
+}
+
+<h3 class="mb-3"><i class="bi bi-send me-2"></i>Send notification</h3>
+
+<div class="card" style="max-width: 560px;">
+    <div class="card-body p-4">
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+        <form method="post" novalidate>
+            <div class="mb-3">
+                <label asp-for="Input.CustomerId" class="form-label"></label>
+                <input asp-for="Input.CustomerId" class="form-control" type="number" min="1" />
+                <span asp-validation-for="Input.CustomerId" class="text-danger small"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Input.Type" class="form-label"></label>
+                <select asp-for="Input.Type" class="form-select">
+                    @foreach (var type in Model.TypeOptions)
+                    {
+                        <option value="@type">@type</option>
+                    }
+                </select>
+                <span asp-validation-for="Input.Type" class="text-danger small"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Input.Message" class="form-label"></label>
+                <textarea asp-for="Input.Message" class="form-control" rows="3" maxlength="300"></textarea>
+                <span asp-validation-for="Input.Message" class="text-danger small"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary"><i class="bi bi-send me-1"></i>Send</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

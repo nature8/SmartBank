@@ -1,0 +1,116 @@
+@page
+@model SmartBank.Web.Pages.IndexModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h2 class="mb-1">Welcome, @User.Identity?.Name</h2>
+<p class="text-muted mb-4">
+    Signed in as <span class="badge role-badge-@(User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value)">@User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value</span>
+</p>
+
+@if (!string.IsNullOrWhiteSpace(Model.LoadWarning))
+{
+    <div class="alert alert-warning"><i class="bi bi-exclamation-triangle me-1"></i>@Model.LoadWarning</div>
+}
+
+@if (Model.IsStaff)
+{
+    <div class="row g-3">
+        <div class="col-md-3">
+            <div class="card stat-card">
+                <div class="card-body">
+                    <div class="text-muted small">Total customers</div>
+                    <div class="display-6">@(Model.TotalCustomers ?? 0)</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-header">Quick actions</div>
+                <div class="card-body d-flex flex-wrap gap-2">
+                    <a asp-page="/Customers/Create" class="btn btn-primary"><i class="bi bi-person-plus me-1"></i>Add customer</a>
+                    <a asp-page="/Accounts/Index" class="btn btn-outline-primary"><i class="bi bi-wallet2 me-1"></i>Open / look up account</a>
+                    <a asp-page="/Transactions/Deposit" class="btn btn-outline-primary"><i class="bi bi-cash-coin me-1"></i>Deposit</a>
+                    <a asp-page="/Transactions/Withdraw" class="btn btn-outline-primary"><i class="bi bi-cash-stack me-1"></i>Withdraw</a>
+                    <a asp-page="/Transactions/Transfer" class="btn btn-outline-primary"><i class="bi bi-arrow-left-right me-1"></i>Transfer</a>
+                    <a asp-page="/Notifications/Create" class="btn btn-outline-primary"><i class="bi bi-bell me-1"></i>Send notification</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    @if (Model.MyCustomerRecord is null)
+    {
+        <div class="alert alert-info">
+            <i class="bi bi-info-circle me-1"></i>
+            We couldn't find a customer profile linked to your login yet. Please contact a branch
+            representative to finish setting up your customer record.
+        </div>
+    }
+    else
+    {
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">My profile</div>
+                    <div class="card-body">
+                        <p class="mb-1"><strong>@Model.MyCustomerRecord.FirstName @Model.MyCustomerRecord.LastName</strong></p>
+                        <p class="mb-1 text-muted small">@Model.MyCustomerRecord.Email</p>
+                        <p class="mb-3 text-muted small">@Model.MyCustomerRecord.PhoneNumber</p>
+                        <a asp-page="/Customers/MyProfile" class="btn btn-sm btn-outline-primary">View / edit profile</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">My accounts</div>
+                    <div class="card-body">
+                        @if (Model.MyAccounts.Count == 0)
+                        {
+                            <p class="text-muted mb-0">You don't have any accounts yet.</p>
+                        }
+                        else
+                        {
+                            <table class="table table-sm align-middle mb-0">
+                                <thead><tr><th>Account #</th><th>Balance</th><th>Status</th></tr></thead>
+                                <tbody>
+                                @foreach (var acc in Model.MyAccounts)
+                                {
+                                    <tr>
+                                        <td>@acc.AccountNumber</td>
+                                        <td class="balance-amount">@acc.Balance.ToString("C")</td>
+                                        <td>
+                                            @if (acc.IsActive)
+                                            {
+                                                <span class="badge text-bg-success">Active</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge text-bg-secondary">Closed</span>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                                </tbody>
+                            </table>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-header">Quick actions</div>
+            <div class="card-body d-flex flex-wrap gap-2">
+                <a asp-page="/Transactions/Deposit" class="btn btn-outline-primary"><i class="bi bi-cash-coin me-1"></i>Deposit</a>
+                <a asp-page="/Transactions/Withdraw" class="btn btn-outline-primary"><i class="bi bi-cash-stack me-1"></i>Withdraw</a>
+                <a asp-page="/Transactions/Transfer" class="btn btn-outline-primary"><i class="bi bi-arrow-left-right me-1"></i>Transfer</a>
+                <a asp-page="/Transactions/Statement" class="btn btn-outline-primary"><i class="bi bi-receipt me-1"></i>Statement</a>
+                <a asp-page="/Notifications/MyNotifications" class="btn btn-outline-primary"><i class="bi bi-bell me-1"></i>My notifications</a>
+            </div>
+        </div>
+    }
+}

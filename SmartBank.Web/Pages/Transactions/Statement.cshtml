@@ -1,0 +1,69 @@
+@page
+@model SmartBank.Web.Pages.Transactions.StatementModel
+@{
+    ViewData["Title"] = "Statement";
+}
+
+<h3 class="mb-3"><i class="bi bi-receipt me-2"></i>Account statement</h3>
+
+<form method="get" class="row g-2 mb-3">
+    <div class="col-md-3">
+        <input type="number" name="accountId" value="@Model.AccountId" min="1" class="form-control" placeholder="Account ID" />
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-outline-primary"><i class="bi bi-search me-1"></i>View statement</button>
+    </div>
+</form>
+
+@if (!string.IsNullOrWhiteSpace(Model.ErrorMessage))
+{
+    <div class="alert alert-danger"><i class="bi bi-exclamation-triangle me-1"></i>@Model.ErrorMessage</div>
+}
+
+@if (Model.Searched)
+{
+    <div class="card">
+        <div class="card-header">Transactions for account #@Model.AccountId</div>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Amount</th>
+                        <th>Destination account</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Transactions.Count == 0)
+                    {
+                        <tr><td colspan="4" class="text-center text-muted py-4">No transactions found for this account.</td></tr>
+                    }
+                    else
+                    {
+                        @foreach (var tx in Model.Transactions)
+                        {
+                            <tr>
+                                <td>@tx.CreatedAt.ToLocalTime().ToString("g")</td>
+                                <td>
+                                    @{
+                                        var badgeClass = tx.Type switch
+                                        {
+                                            "Deposit" => "text-bg-success",
+                                            "Withdraw" => "text-bg-warning",
+                                            "Transfer" => "text-bg-info",
+                                            _ => "text-bg-secondary"
+                                        };
+                                    }
+                                    <span class="badge @badgeClass">@tx.Type</span>
+                                </td>
+                                <td class="balance-amount">@tx.Amount.ToString("C")</td>
+                                <td>@(tx.DestinationAccountId?.ToString() ?? "-")</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

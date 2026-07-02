@@ -1,0 +1,86 @@
+@page
+@model SmartBank.Web.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Open an account";
+}
+
+<div class="auth-wrapper" style="max-width: 560px;">
+    <div class="card">
+        <div class="card-header text-center">
+            <i class="bi bi-person-plus me-1"></i>
+            @(Model.CanChooseRole ? "Create a staff or customer account" : "Open a SmartBank account")
+        </div>
+        <div class="card-body p-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <form method="post" novalidate>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Input.FullName" class="form-label"></label>
+                        <input asp-for="Input.FullName" class="form-control" />
+                        <span asp-validation-for="Input.FullName" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Input.PhoneNumber" class="form-label"></label>
+                        <input asp-for="Input.PhoneNumber" class="form-control" placeholder="+1 555 123 4567" />
+                        <span asp-validation-for="Input.PhoneNumber" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Input.Email" class="form-label"></label>
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" />
+                    <span asp-validation-for="Input.Email" class="text-danger small"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Input.Password" class="form-label"></label>
+                        <input asp-for="Input.Password" class="form-control" autocomplete="new-password" />
+                        <span asp-validation-for="Input.Password" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Input.ConfirmPassword" class="form-label"></label>
+                        <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" />
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                @if (Model.CanChooseRole)
+                {
+                    <div class="mb-3">
+                        <label asp-for="Input.RoleId" class="form-label"></label>
+                        <select asp-for="Input.RoleId" class="form-select">
+                            @foreach (var role in Model.RoleOptions)
+                            {
+                                <option value="@role.Id">@role.Name</option>
+                            }
+                        </select>
+                        <span asp-validation-for="Input.RoleId" class="text-danger small"></span>
+                        <div class="form-text">As an Admin, you can create Manager or Admin staff accounts here.</div>
+                    </div>
+                }
+                else
+                {
+                    <input type="hidden" asp-for="Input.RoleId" value="@Roles.CustomerId" />
+                    <p class="text-muted small">
+                        <i class="bi bi-info-circle me-1"></i>New sign-ups are created as <strong>Customer</strong> accounts.
+                    </p>
+                }
+
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="bi bi-check2-circle me-1"></i>Create account
+                </button>
+            </form>
+
+            <hr />
+            <p class="text-center text-muted small mb-0">
+                Already have an account? <a asp-page="/Account/Login">Sign in</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

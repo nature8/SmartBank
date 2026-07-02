@@ -1,0 +1,67 @@
+@page
+@model SmartBank.Web.Pages.Customers.MyProfileModel
+@{
+    ViewData["Title"] = "My profile";
+}
+
+<h3 class="mb-3"><i class="bi bi-person-badge me-2"></i>My profile</h3>
+
+@if (!string.IsNullOrWhiteSpace(Model.ErrorMessage) && !Model.HasProfile)
+{
+    <div class="alert alert-danger"><i class="bi bi-exclamation-triangle me-1"></i>@Model.ErrorMessage</div>
+}
+
+@if (!Model.HasProfile)
+{
+    <div class="alert alert-info">
+        <i class="bi bi-info-circle me-1"></i>
+        No customer profile is linked to your login yet. Please contact a branch representative to
+        finish setting up your customer record.
+    </div>
+}
+else
+{
+    <div class="card" style="max-width: 640px;">
+        <div class="card-body p-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <form method="post" novalidate>
+                <input type="hidden" asp-for="Input.CustomerId" />
+                <input type="hidden" asp-for="Input.UserId" />
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Input.FirstName" class="form-label"></label>
+                        <input asp-for="Input.FirstName" class="form-control" />
+                        <span asp-validation-for="Input.FirstName" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Input.LastName" class="form-label"></label>
+                        <input asp-for="Input.LastName" class="form-control" />
+                        <span asp-validation-for="Input.LastName" class="text-danger small"></span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Input.Email" class="form-label"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger small"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Input.PhoneNumber" class="form-label"></label>
+                    <input asp-for="Input.PhoneNumber" class="form-control" />
+                    <span asp-validation-for="Input.PhoneNumber" class="text-danger small"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Input.Address" class="form-label"></label>
+                    <input asp-for="Input.Address" class="form-control" />
+                    <span asp-validation-for="Input.Address" class="text-danger small"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary"><i class="bi bi-save me-1"></i>Save changes</button>
+            </form>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

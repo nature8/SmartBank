@@ -91,6 +91,23 @@ namespace SmartBank.TransactionService.Services
 
             await _context.SaveChangesAsync();
 
+            await _accountPublisher.PublishAccountTransactionAsync(
+                new AccountTransactionEvent
+                {
+                    AccountId = dto.ToAccountId,
+                    Amount = dto.Amount,
+                    TransactionType = "Deposit"
+                });
+
+            await _accountPublisher.PublishAccountTransactionAsync(
+                new AccountTransactionEvent
+                {
+                    AccountId = dto.FromAccountId,
+                    Amount = dto.Amount,
+                    TransactionType = "Withdraw"
+                });
+            
+
             await _notificationPublisher.PublishNotificationAsync(
                 dto.FromAccountId,
                 $"Transfer of {dto.Amount} to account {dto.ToAccountId} successful",
